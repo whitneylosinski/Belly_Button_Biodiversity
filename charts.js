@@ -68,8 +68,6 @@ function buildCharts(sample) {
     var otuID = result.otu_ids;
     var otuLabel = result.otu_labels;
     var sampleValue = result.sample_values.map((value) => parseInt(value));
-    console.log(otuID);
-    console.log(sampleValue);
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -90,5 +88,32 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", [barData], barLayout);
+
+
+
+
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = {
+      x: otuID,
+      y: sampleValue,
+      type: "bubble",
+      text: otuLabel,
+      hoverinfo: "x+y+text",
+      mode: "markers",
+      marker: {size: sampleValue, color: otuID, colorscale: "Earth"}
+    };
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      title: "Bacteria Cultures Per Sample",
+      xaxis: {title: "OTU ID"},
+      margin: {l:75, r:75, b:100, t:25},
+      hovermode: "closest"
+      
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot("bubble", [bubbleData], bubbleLayout);
+
   });
 }
