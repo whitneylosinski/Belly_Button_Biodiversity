@@ -79,6 +79,7 @@ function buildCharts(sample) {
       hovertemplate: otuLabel,
       type: "bar",
       orientation: "h",
+      backgroundColor: "rgb(192, 189, 189)"
     };
     // 9. Create the layout for the bar chart. 
     var barLayout = {
@@ -90,8 +91,8 @@ function buildCharts(sample) {
       margin: {
         l: 125,
         r: 50,
-        b: 110,
-        t: 25,
+        b: 50,
+        t: 50,
         pad: 5
       },
     };
@@ -117,7 +118,7 @@ function buildCharts(sample) {
       title: "<b>Bacteria Cultures Per Sample</b>",
       xaxis: {title: "OTU ID"},
       margin: {
-        t: 25,
+        t: 40,
         pad: 5
       },
       hovermode: "closest"
@@ -150,10 +151,7 @@ function buildCharts(sample) {
         bar: {color: "black"},
         steps: [
           {range: [0,2], color: "red"},
-          {range: [2,4], color: "orange"},
-          {range: [4,6], color: "yellow"},
-          {range: [6,8], color: "yellowgreen"},
-          {range: [8,10], color: "green"}
+
         ],
       }
     };
@@ -167,7 +165,7 @@ function buildCharts(sample) {
       margin: {
         l: 50,
         r: 50,
-        b: 100,
+        b: 0,
         t: 50,
         pad: 5
       },
