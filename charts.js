@@ -87,13 +87,12 @@ function buildCharts(sample) {
         text: "<b>Top 10 Bacteria Cultures Found</b>",
         y: 0.90
       },
-      width: 425,
       margin: {
-        l: 150,
+        l: 100,
         r: 35,
         b: 50,
         t: 75,
-        pad: 50
+        pad: 4
       },
     };
     // 10. Use Plotly to plot the data with the layout. 
