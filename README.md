@@ -56,40 +56,42 @@ Creating the belly button bacteria dashboard was completed in seven major steps 
    ```
    
 3.  The third step of creating the dashboard was to write a function to define what happens when a different Test Subject ID is selected from the dropdown menu.  This was done using the `optionChanged()` function to take in the `newSample` argument and build the metaData and Charts using functions that are defined later.
+   
+      ```js
+      function optionChanged(newSample) {
+         // Fetch new data each time a new sample is selected
+         buildMetadata(newSample);
+         buildCharts(newSample);  
+      }
+      ```
+  
+4. The fourth step of creating the dashboard was to create the demographics panel that would display the general information about each test subject.  Again, a function was written to take in the argument of the Test Subject ID number and read the json file.  The metadata array from the data file was assigned the variable `metadata` and filtered for the desired sample number.  The panel with an id equal to `sample-metadata` was then selected from the html file and assigned to the variable `PANEL`.  The panel data was cleared and then the data array for the sample number was iterated through to display each key and value as a new h6 tag on the PANEL in the html file.
+ 
    ```js
-   function optionChanged(newSample) {
-     // Fetch new data each time a new sample is selected
-     buildMetadata(newSample);
-     buildCharts(newSample);  
-   }
-   ```
-  
-4. The fourth step of creating the dashboard was to create the demographics panel that would display the general information about each test subject.  Again, a function was written to take in the argument of the Test Subject ID number and read the json file.  The metadata array from the data file was assigned the variable `metadata` and filtered for the desired sample number.  The panel with an id equal to `sample-metadata` was then selected from the html file and assigned to the variable `PANEL'.  The panel data was cleared and then the data array for the sample number was iterated through to display each key and value as a new h6 tag on the PANEL in the html file.
-  ```js
-  // Demographics Panel 
-  function buildMetadata(sample) {
-    d3.json("samples.json").then((data) => {
-      var metadata = data.metadata;
-      // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
-      var result = resultArray[0];
-      // Use d3 to select the panel with id of `#sample-metadata`
-      var PANEL = d3.select("#sample-metadata");
+   // Demographics Panel 
+   function buildMetadata(sample) {
+      d3.json("samples.json").then((data) => {
+         var metadata = data.metadata;
+         // Filter the data for the object with the desired sample number
+         var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+         var result = resultArray[0];
+         // Use d3 to select the panel with id of `#sample-metadata`
+         var PANEL = d3.select("#sample-metadata");
 
-      // Use `.html("") to clear any existing metadata
-      PANEL.html("");
+         // Use `.html("") to clear any existing metadata
+         PANEL.html("");
 
-      // Use `Object.entries` to add each key and value pair to the panel
-      // Hint: Inside the loop, you will need to use d3 to append new
-      // tags for each key-value in the metadata.
-      Object.entries(result).forEach(([key, value]) => {
-        PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
+         // Use `Object.entries` to add each key and value pair to the panel
+         // Hint: Inside the loop, you will need to use d3 to append new
+         // tags for each key-value in the metadata.
+         Object.entries(result).forEach(([key, value]) => {
+            PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
+         });
       });
-    });
-  }
-  ```
+     }
+     ```
   
-5. The fifth step of creating the dashboard was to create each of the charts.
+5. The fifth step of creating the dashboard was to create a function to build each of the charts.
 
 
 ## Summary
