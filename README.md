@@ -202,8 +202,3 @@ Creating the belly button bacteria dashboard was completed in six major steps as
 6. The final step in creating the belly button biodiversity dashboard was to edit the html final to apply formatting changes to the web application and make it more visually appealing to the user.  After this was done the dashboard was created as shown below.
 
 ![Screenshot](screenshot.png)
-
-## Summary
-
-
-
