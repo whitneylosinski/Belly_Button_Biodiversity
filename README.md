@@ -9,7 +9,7 @@ The purpose of this project was to create a web application dashboard using Java
 4. Bubble chart of bacteria cultures per sample
 
 ## Resources
-Data Source: samples.json
+Data Source: samples.json </br>
 Software: VS Code, Javascript (ECMAScript 6), Plotly, Bootstrap, d3, HTML
 
 ## Results
@@ -25,45 +25,44 @@ Creating the belly button bacteria dashboard was completed in six major steps as
         <select id="selDataset" style="color: black"; onchange="optionChanged(this.value)"></select>
    ```
 
-2. The second step of creating the dashboard was to write a function to initialize the dashboard as shown below.  The variable `selector` was assigned to the html element with an id equal to "selDataset" to grab a reference to the dropdown select element.  The samples.json file was then read and assigned the variable `data`.  From `data`, the names array was assigned to the variable `sampleNames` and for each sample name, a dropdown menu option wass appended to the html code,  with the sample ID assigned as the "text" and the "value" property.  The first sample from the list was then used to build the initial plots and the dashboard was initialized.
+2. The second step of creating the dashboard was to write a function to initialize the dashboard as shown below.  The variable `selector` was assigned to the html element with an id equal to "selDataset" to grab a reference to the dropdown select element.  The samples.json file was then read and assigned the variable `data`.  From `data`, the names array was assigned to the variable `sampleNames` and for each sample name, a dropdown menu option was appended to the html code, with the sample ID assigned as the "text" and the "value" property.  The first sample from the list was then used to build the initial plots and the dashboard was initialized.
 
    ```js
-      function init() {
-        // Grab a reference to the dropdown select element
-        var selector = d3.select("#selDataset");
+   function init() {
+     // Grab a reference to the dropdown select element
+     var selector = d3.select("#selDataset");
 
-        // Use the list of sample names to populate the select options
-        d3.json("samples.json").then((data) => {
-          var sampleNames = data.names;
+     // Use the list of sample names to populate the select options
+     d3.json("samples.json").then((data) => {
+         var sampleNames = data.names;
 
-        sampleNames.forEach((sample) => {
-          selector
-            .append("option")
-            .text(sample)
-            .property("value", sample);
-        });
+         sampleNames.forEach((sample) => {
+            selector
+               .append("option")
+               .text(sample)
+               .property("value", sample);
+            });
 
-        // Use the first sample from the list to build the initial plots
-        var firstSample = sampleNames[0];
-        buildCharts(firstSample);
-        buildMetadata(firstSample);
-      });
-    }
+         // Use the first sample from the list to build the initial plots
+         var firstSample = sampleNames[0];
+         buildCharts(firstSample);
+         buildMetadata(firstSample);
+     });
+   }
 
-    // Initialize the dashboard
-    init();
-
+   // Initialize the dashboard
+   init();
    ```
    
 3.  The third step of creating the dashboard was to write a function to define what happens when a different Test Subject ID is selected from the dropdown menu.  This was done using the `optionChanged()` function to take in the `newSample` argument and build the metaData and Charts using functions that are defined later.
    
-      ```js
-      function optionChanged(newSample) {
-         // Fetch new data each time a new sample is selected
-         buildMetadata(newSample);
-         buildCharts(newSample);  
-      }
-      ```
+   ```js
+   function optionChanged(newSample) {
+      // Fetch new data each time a new sample is selected
+      buildMetadata(newSample);
+      buildCharts(newSample);  
+   }
+   ```
   
 4. The fourth step of creating the dashboard was to create the demographics panel that would display the general information about each test subject.  Again, a function was written to take in the argument of the Test Subject ID number and read the json file.  The metadata array from the data file was assigned the variable `metadata` and filtered for the desired sample number.  The panel with an id equal to `sample-metadata` was then selected from the html file and assigned to the variable `PANEL`.  The panel data was cleared and then the data array for the sample number was iterated through to display each key and value as a new h6 tag on the PANEL in the html file.
  
@@ -89,7 +88,7 @@ Creating the belly button bacteria dashboard was completed in six major steps as
          });
       });
      }
-     ```
+   ```
   
 5. The fifth step of creating the dashboard was to create a function to build each of the charts.  Within the function, the json data was read into the variable `data` and the "samples" array from the data was assigned to `samples`.  The samples array was then filtered for the object with the desired Test Subject ID number and assigned to the variable `resultArray` and the first item in the result array was assigned to `Result`.  Next, variables were created to hold the data for the otu_ids, otu_labels and sample_values from the data.  To get the y data labels, the otu_ID's were mapped through to add "OTU " in front of the ID and then reversed so that the ID's with the largest values were last.  See the script below.
 
@@ -112,7 +111,7 @@ Creating the belly button bacteria dashboard was completed in six major steps as
          var yticks = otuID.slice(0,10).map((id) => "OTU " + id).reverse();
    ```
    
-   Next, the bar chart was built using the variables above.  The x values were set as the first 10 items in the sampleValue data defined above, sorted in reverse order.  They y values were the `yticks` defined above, the hover labels were set to the otuLabel defined above and the type of chart was set to "bar".  Some additional formatting was added to the chart along with a layout which included the title of the chart and then the plot was charted using Ploytly. (Not all of the formatting included in the final product is shown below for the sake of shortening the summary.
+   Next, the bar chart was built using the variables above.  The x values were set as the first 10 items in the `sampleValue` data defined above, sorted in reverse order.  The y values were the `yticks` defined above, the hover labels were set to the `otuLabel` defined above and the type of chart was set to "bar".  Some additional formatting was added to the chart along with a layout which included the title of the chart and then the plot was charted using Ploytly. (Not all of the formatting included in the final product is shown below for the sake of shortening the summary.
    
    ```js
          // Create the trace for the bar chart. 
@@ -199,6 +198,6 @@ Creating the belly button bacteria dashboard was completed in six major steps as
    }
    ```
 
-6. The final step in creating the belly button biodiversity dashboard was to edit the html final to apply formatting changes to the web application and make it more visually appealing to the user.  After this was done the dashboard was created as shown below.
+6. The final step in creating the belly button biodiversity dashboard was to edit the html file to apply formatting changes to the web application and make it more visually appealing to the user.  After this was done the dashboard was created as shown below.
 
 ![Screenshot](screenshot.png)
