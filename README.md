@@ -13,7 +13,7 @@ Data Source: samples.json </br>
 Software: VS Code, Javascript (ECMAScript 6), Plotly, Bootstrap, d3, HTML
 
 ## Results
-Creating the belly button bacteria dashboard was completed in six major steps as follows.  
+The belly button biodiversity dashboard can be found at https://whitneylosinski.github.io/Belly_Button_Biodiversity/.  Creating the dashboard was completed in six major steps as follows.  
 
 1. The first step in creating the dashboard was to create a basic html page containing a jumbotron for the title, a well where the Test Subject ID number would be selected, a panel for the demographic information to be displayed and 3 graphs to display the data.  Bootstrap was used as a stylesheet to help format the html page and d3, plotly and samples.json were included as script tags to read the data.
 
