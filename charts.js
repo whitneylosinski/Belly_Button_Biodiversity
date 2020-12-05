@@ -77,7 +77,7 @@ function buildCharts(sample) {
     var barData = {
       x: sampleValue.slice(0,10).reverse(),
       y: yticks,
-      hovertemplate: otuLabel,
+      hoverinfo: otuLabel,
       type: "bar",
       orientation: "h",
       backgroundColor: "rgb(192, 189, 189)"
